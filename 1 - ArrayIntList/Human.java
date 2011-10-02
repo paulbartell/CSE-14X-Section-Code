@@ -2,13 +2,20 @@ public class Human {
   private String name;
   private int    age;
   private String guiltyPleasure;
+  public static int population;
 
   public Human() {
     age = 0;
+    population += 1;
   }
 
   public Human(String newName) {
     name = newName;
+    population += 1;
+  }
+
+  public static int getPopulation() {
+    return population;
   }
 
   public void eat() {

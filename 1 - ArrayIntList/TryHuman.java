@@ -31,5 +31,13 @@ public class TryHuman {
     System.out.println(b.getName());
     System.out.println(b.getAge());
     System.out.println("--------------------------");
+
+    // Static stuff -- only look at it if you've got your mind wrapped
+    // around the rest
+    System.out.println(Human.population);
+    new Human();
+    new Human();
+    new Human();
+    System.out.println(Human.population);
   }
 }
