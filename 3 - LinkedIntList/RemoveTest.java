@@ -8,7 +8,7 @@ public class RemoveTest {
   public static String testOne() {
     LinkedIntList a = new LinkedIntList();
     a.add(42);
-    a.remove(42);
+    a.remove(0);
     return a.toString();
   }
 
