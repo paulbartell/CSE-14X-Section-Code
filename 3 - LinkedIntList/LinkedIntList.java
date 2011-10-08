@@ -72,15 +72,30 @@ public class LinkedIntList {
 
     // pre: 0 <= index <= size()
     // post: inserts the given value at the given index
-    public void add(int index, int value) {
-        if (index == 0)
-            front = new ListNode(value, front);
-        else {
-            ListNode current = front;
-            for (int i = 0; i < index - 1; i++)
-                current = current.next;
-            current.next = new ListNode(value, current.next);
-        }
+    public void add(int index, int element) {
+      // Handle the case where we are inserting at zero
+      if(index == 0) {
+        ListNode newNode = new ListNode(element);
+        newNode.next     = front;
+        front            = newNode;
+        return;
+      }
+
+      // Get our pointers to where we want them to be
+      int currentIndex = 1;
+      ListNode current = front;
+      while(currentIndex < index) {
+        currentIndex += 1;
+        current = current.next;
+      }
+
+      // Rearrange our pointers that we now have set up
+      ListNode firstNode = current;
+      ListNode farNode   = firstNode.next;
+      ListNode newNode   = new ListNode(element);
+
+      firstNode.next   = newNode;
+      newNode.next     = farNode;
     }
 
     // pre : 0 <= index < size()
