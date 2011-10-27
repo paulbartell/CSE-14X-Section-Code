@@ -6,7 +6,7 @@ public class ListRemoveDuplicatesTest {
     String[] inputTwo = {"39"};
     runExpectation(2, "It should leave this one element alone",                                     test(inputTwo),   "[39]");
     String[] inputThree = {"42", "42", "39"};
-    runExpectation(3, "It should destroy this first duplicate",                                     test(inputThree), "[39]");
+    runExpectation(3, "It should destroy this first duplicate",                                     test(inputThree), "[42, 39]");
     String[] inputFour = {"39", "39", "39", "39", "39", "42"};
     runExpectation(4, "It should destroy these wide amounts of duplicate but leave the rest alone", test(inputFour),  "[39, 42]");
     String[] inputFive = {"39", "39", "39", "39", "42", "42", "42", "9001", "9001"};
