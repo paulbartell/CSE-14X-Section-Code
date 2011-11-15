@@ -1,0 +1,15 @@
+
+public int numNodes() {
+
+}
+//takes a node, and returns the number of nodes under it.
+private int numNodes(IntTreeNode node) {
+  if(node == null) {
+    return 0;
+  }
+
+  int leftside = numNodes(node.left)
+  int rightside = numNodes(node.right)
+  int total = leftside + rightside + 1;
+
+}
