@@ -11,6 +11,6 @@ public class Tester {
                         {1, 0, 2, 0, 3, 0, 4, 0, 5}};
     Grid g = new Grid(testGrid);
 
-    // g.print();
+    g.print();
   }
 }
