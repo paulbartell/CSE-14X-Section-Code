@@ -17,8 +17,7 @@ public class LinkedIntList {
             count++;
         }
         return count;
-    }
-
+    } 
     // pre : 0 <= index < size()
     // post: returns the integer at the given index in the list
     public int get(int index) {
