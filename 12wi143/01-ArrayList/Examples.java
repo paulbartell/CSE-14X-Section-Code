@@ -20,9 +20,25 @@ public class Examples {
     return currentLongestLength;
   }
 
-  public static void stutter(ArrayList<Integer> arr) {
-    for(int i = 1; i < arr.size(); i++) {
-      arr.add(i + (2 * (i - 1)), arr.get(i - 1));
+  public static void stutter(ArrayList<Integer> list) {
+    // We looked at the example...
+    //  0   1    2
+    // [39, 42, 9001]
+    // Which had to turn into
+    //  0   1   2   3   4     5
+    // [39, 39, 42, 42, 9001, 9001]
+    // We noticed that 39 had to be added at 1
+    // 42 at 3
+    // 9001 at 5.
+    //
+    // Phrased otherwise
+    // item 0 => 1
+    // item 1 => 3
+    // item 2 => 5
+
+    int originalSize = list.size();
+    for(int i = 0; i < originalSize; i++) {
+      list.add(2 * i + 1, list.get(i - 1));
     }
   }
 
