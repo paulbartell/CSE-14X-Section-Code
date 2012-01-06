@@ -35,11 +35,21 @@ public class Examples {
     // item 0 => 1
     // item 1 => 3
     // item 2 => 5
+    // Of course, there's many different ways to solve this
+    // as long as you realize that this problem exists
 
+    // Since the loop is 0 to less than originalSize, this loop is ensured
+    // to be entered the same amount of times as there exist original elements
     int originalSize = list.size();
     for(int i = 0; i < originalSize; i++) {
       list.add(2 * i + 1, list.get(i - 1));
     }
+
+    // Other solution:
+    // This adds right before every element and then shifts over by two
+    // for(int i = 0; i < list.size(); i += 2) {
+    //   list.add(i, list.get(i));
+    // }
   }
 
 }
