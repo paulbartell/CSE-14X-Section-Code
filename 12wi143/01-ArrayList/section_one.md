@@ -1,6 +1,6 @@
 <markdown>
 
-# Arrays
+## Arrays
 
 An array is a way to hold and package multiple pieces of data(data..
 like numbers or birthdays or turtle names)
@@ -59,7 +59,7 @@ A good way to think around it is to think that **3 will be the final number that
 **System.out.println(list[i])** -- we access list[i] and then print out what is in it.
 Realize that **i is just a number**. You could use **list[i + 1]** or **list[i - 1]** if you wanted, and in many situations you will need to.
 
-# Objects
+## Objects
 
 https://github.com/DavidMah/CSE-14X-Section-Code/blob/master/12wi143/01-ArrayList/Human.java
 
@@ -88,7 +88,7 @@ BimboBob is another Human, he also has a name, and an age, and he enjoys mud wre
 He has the same types of fields as I do (As the class Human describes),
 but **because he is a different instance of human, he has different values for his fields**.
 
-## Instance Methods
+### Instance Methods
 
 Every human knows how to do a few things, like eating and sleeping. These methods are described in the class
 
@@ -126,7 +126,7 @@ individual.
 Play with the code in the example and try writing another static
 field or method and see what you can do.
 
-## Constructor
+### Constructor
 
 All humans know how to be born.
 The events that occur right when a new Human is instantiated are described in the Human's **constructor**
@@ -152,7 +152,7 @@ The second constructor takes a String -- the Human's name and sets the
 field. With our human class, you can't give a name to the human at any
 time other than when it is born.
 
-## Client versus Class
+### Client versus Class
 
 Check out the example code for the Human. Human.java is the class.
 TryHuman.java is the client.
@@ -165,9 +165,10 @@ The client makes a bunch of Humans and makes use of these public
 methods. The client doesn't actually have to worry how eat and sleep's
 tiny code details work. All the client has to do is say a.sleep and a
 will go to sleep. In fact, often I'd say is that **the client doesn't
-even want to know the implementation details of a class**
+even want to know the implementation details of a class**. Remember
+that. It will come up later.
 
-# ArrayList
+## ArrayList
 
 The ArrayIntList is a class that describes an object to wrap around arrays.
 Ordinarily, you cannot change the size of an array. If you spawn one of size 4,
@@ -178,7 +179,7 @@ Because of the client/class idea, we don't care how the ArrayList works.
 **We can make use of an ArrayList without actually knowing how it works
 on the inside**.
 
-## How it works which doesn't matter to you right now, but good to know
+### How it works which doesn't matter to you right now, but good to know
 
 The way it works is that each instance of the ArrayIntList object holds an array of some size.
 The client can add or remove or do whatever he wants with elements in the ArrayIntList.
