@@ -10,10 +10,10 @@ Black Box Testing -- from the perspective of the client
 White Box Testing -- from the perspective of the coder
 
 Writing a test:
-- Take one or two methods together
-- Write code that does something using our class
-- create an expectation for what we think it will do
-- Write code that checks if what the methods did is what we expected
+ -  Take one or two methods together
+ -  Write code that does something using our class
+ -  Create an expectation for what we think it will do
+ -  Write code that checks if what the methods did is what we expected
 
     #!java
     public class Test {
@@ -85,11 +85,11 @@ Writing a test:
         // empty list
       }
 
-  public static void expect(String output, String expected) {
-    if(output.equals(expected))
-      System.out.println("Success");
-    else
-      System.out.println("Failure. Got <" + output +">. Expected <" + expected + ">");
-  }
-}
+      public static void expect(String output, String expected) {
+        if(output.equals(expected))
+          System.out.println("Success");
+        else
+          System.out.println("Failure. Got <" + output +">. Expected <" + expected + ">");
+      }
+    }
 
