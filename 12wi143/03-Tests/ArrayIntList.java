@@ -21,7 +21,7 @@ public class ArrayIntList {
     // If necessary, resizes the array to fit the value.
     public void add(int value) {
         elementData[size] = value;   // put at end
-        // size++;
+        size++;
     }
     
     // Inserts the given value into the list at the given index.
@@ -60,13 +60,17 @@ public class ArrayIntList {
                 return elementData[i];
             }
         }
-        
-        return 0;
-    }
+        return -1;
+    //check for 0
+    //check for the top edge
+    // write a test for that particular mistake.
+    //
+    //
+    //check we check for -1 
     
     // Returns true if the list does not contain any elements, otherwise false.
     public boolean isEmpty() {
-        return size > 0;
+        return size == 0;
     }
     
     // Returns true if the list contains the given value, otherwise false.
@@ -93,7 +97,7 @@ public class ArrayIntList {
             return "[]";
         } else {
             String result = "[";
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < size - 1; i++) {
                 result += elementData[i] + ", ";
             }
             result += "]";

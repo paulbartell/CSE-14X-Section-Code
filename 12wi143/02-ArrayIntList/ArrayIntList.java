@@ -34,6 +34,8 @@ public class ArrayIntList {
       previous = elementData[i];
     }
 
+    // What about this case? Where the most frequent
+    // element is the one that appears last?
     // [1, 2, 2, 2, 2, 2]
     if(count > max && size != 0) {
       max = count;

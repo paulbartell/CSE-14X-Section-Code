@@ -1,3 +1,4 @@
+<markdown>
 ## Client
 
 Clients don't know about implementation details. They actually don't
@@ -59,3 +60,4 @@ public** You can make them private
 Making public methods that the client doesn't want breaks the contract
 by introducing extra functionality, so don't do it. Make your extra
 methods private.
+</markdown>
