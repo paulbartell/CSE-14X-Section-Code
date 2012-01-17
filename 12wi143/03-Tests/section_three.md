@@ -1,13 +1,36 @@
 # Tests
-Test our code for us
 
-We write code to make sure that every situation we can think of works
+Tests automate the task of making sure that our code works.
 
-Tests let us feel comfortable with changing our code because if we mess up changing the code... the tests break
-and we know that we messed up.
+We write code to make sure that every situation we can think of works.
 
-Black Box Testing -- from the perspective of the client
-White Box Testing -- from the perspective of the coder
+If you have tests, then in only a few clicks you can check for any major
+flaws in your code.
+
+Tests let us feel comfortable with changing our code because if we mess
+up changing the code... the tests fail and we know that we messed up.
+
+You will never have tests that perfectly make sure your code works. Just
+mostly working.
+
+## Black Box Testing
+
+Black box testing is from the perspective of the client. The client doesn't
+know what the implementation of the code is(the code is the 'Black
+Box'). Write client code that run methods within the class, and hope
+that they do what we expect them to do.
+
+## White Box Testing
+
+White Box testing is from the perspective of the coder(coder.. not the
+class). **The tests you write will still be client code and will look
+just like black box tests**. The difference is that you have greater
+knowledge because you know what the code looks like.
+
+For instance, say you are testing indexOf... **As a white box tester,
+you can see the code. You know that indexOf uses a loop. Because you
+know there is a loop, you know that you need to test the boundaries of
+the loop**. The black box tester wouldn't know about the loop.
 
 Writing a test:
 
