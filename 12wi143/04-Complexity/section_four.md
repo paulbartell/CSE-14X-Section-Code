@@ -40,7 +40,8 @@ talk about how long cleaning takes regardless of who is doing the
 cleaning**. So we will talk about everything in terms of steps. We need
 to choose what a step is for some of these problems.
 
- - Opening a door **(2 steps)**
+ - Turning a doorknob **(1 step)**
+ - Pushing a door **(1 step)**
  - Closing a door **(1 step)**
  - Cleaning a 1x1 square of the room **(1 step)**
 
@@ -159,3 +160,10 @@ Binary search works only on sorted things.. An unsorted Dictionary would
 suck. **Any list that has some type that is sorted can have binary
 search applied to it** Yes **Integers**. Yes **Doubles**. No
 **TileManagers**, for you cannot sort TileManagers.
+
+Binary search runs in O(log(n)) time. A way to think about log time..
+**If you double the amount of words in the dictionary, the binary search
+will only take one more step**. Log time doesn't depend on the doubling
+actually.. it's more like... **if multiply the amount of words in the
+dictionary, the operation will take some amount of steps related to the
+number that you used to multiplty**.
