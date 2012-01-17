@@ -62,7 +62,7 @@ so this method will be useful even for functionality unrelated to the mouse
 
 ## Do Everything Method
 
-This is more of a `do everything` method than a helper.
+This is more of a do everything method than a helper.
 Helpers should only contain the details that are the same for each method...
 for example, a useful function that only does the similar details would be one
 that finds the index of the topmost Tile given coordinates.
