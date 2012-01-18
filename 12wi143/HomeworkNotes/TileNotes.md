@@ -1,3 +1,9 @@
+## Comments that I wrote about your comments.. or your other crap
+
+![Alt text](http://davidpmah.com/cse/14312wi/crazysparkle.png)
+
+Use this to help your commenting/style for your next assignment
+
 ## Non Private Fields
 
 Fields should be private, or else the client
