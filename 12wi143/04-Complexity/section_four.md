@@ -8,7 +8,7 @@ about what that actually means.. let's consider this made up example
 
 Say we had a bathroom..
 
-<Insert diagram of bathroom here>
+![Alt text](http://davidpmah.com/cse/14312wi/Bathroom.jpg)
 
 Some things to notice:
 
@@ -58,7 +58,7 @@ are, rather than time which isn't that helpful).
 
 What if the room was bigger? The length/width is now 4x4.
 
-<Insert Other diagram here>
+![Alt text](http://davidpmah.com/cse/14312wi/Bathroom2.jpg)
 
 The amount of steps for each of those operations is now different
 
