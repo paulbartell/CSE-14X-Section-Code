@@ -1,3 +1,12 @@
+## Comments that I wrote about your comments.. or your other crap
+
+![Alt text](http://davidpmah.com/cse/14312wi/crazysparkle.png)
+
+When I find an issue to annotate while grading,
+I add it to a big list of comments that I've written.
+Then I copy and paste those comments every time I find the issue again.
+Here's all of the copy paste comments. Use this to help your commenting/style for your next assignment.
+
 ## Non Private Fields
 
 Fields should be private, or else the client
