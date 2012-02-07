@@ -86,7 +86,7 @@ public static Map<String, Set<String>> makeDestinations(List<String> inputs) {
     for(String dest: destinations) {
       if(!travel.containsKey(from))
         //  We didn't have the set... so make it
-        travel.put(new TreeSet<String>());
+        travel.put(from, new TreeSet<String>());
       travel.get(from).add(dest);
     }
   }
