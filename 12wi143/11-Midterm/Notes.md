@@ -50,6 +50,7 @@ the array inside of the ArrayIntList is similar to being the client
 except without any shifting.
 
 Get used to this pattern, where you fill in the __ for various numbers
+
         #!java
         for(int i = ___; i < ___; i += ___) {
           // Move stuff in an array somehow
@@ -77,6 +78,7 @@ First notice that we are a client. Then try an example input.
 Let's try removing elements **one at a time** and see what happens
         
         #!ruby
+        .
          0    1   2    3      4     5
         [39, 42, 51, 9001, 9042] // Removing 51.. it happens to be at index 2
         [39, 42, 9001, 9042] // 9001.. happens to be at index 2
@@ -211,7 +213,7 @@ Now that we have all of the steps, write them out
 And code these out! Stuff like edge cases figure out on the spot as you
 code.
 
-        #!jaava
+        #!java
         public static int removeMin(Stack<Integer> derp) {
           if(derp.isEmpty())
             return;
@@ -284,6 +286,8 @@ Loop through key/value pairs in maps through keyset
 
 As always, try an example
 
+        #!ruby
+        .
         {
            "Garpley" => 100,
            "Alice"   => 42,
@@ -339,7 +343,7 @@ middle, or end of the list. That's why I used the ...
 Write a beginning, middle, and after picture:
 
         ...-->[39]-->[42]-->[9001]-->...
-         
+        .
                         _____________
                        / ,-------.   -,
         ...-->[39]   [42]   [9001]     ...
