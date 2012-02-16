@@ -33,9 +33,9 @@ You'll either be the ArrayList client or the class.
 
 If you are the client, then you must worry about shifting. For example.
 
-        #!java
-        for(int i = 0; i < list.size(); i++)
-          list.remove(i);
+    #!java
+    for(int i = 0; i < list.size(); i++)
+      list.remove(i);
 
 If you had an ArrayList called list, then this **would not remove all of
 the elements**. Thats because when you remove the 0th element,
@@ -51,10 +51,10 @@ except without any shifting.
 
 Get used to this pattern, where you fill in the __ for various numbers
 
-        #!java
-        for(int i = ___; i < ___; i += ___) {
-          // Move stuff in an array somehow
-        }
+    #!java
+    for(int i = ___; i < ___; i += ___) {
+      // Move stuff in an array somehow
+    }
 
 
 ### filterRange
@@ -66,46 +66,46 @@ Get used to this pattern, where you fill in the __ for various numbers
 
 First notice that we are a client. Then try an example input.
 
-        #!ruby
-        before:
-        list => [39, 42, 51, 9001, 9042],
-        min  => 2
-        max  => 5
+    #!ruby
+    before:
+    list => [39, 42, 51, 9001, 9042],
+    min  => 2
+    max  => 5
 
-        after:
-        list => [39, 42]
+    after:
+    list => [39, 42]
 
 Let's try removing elements **one at a time** and see what happens
-        
-        #!ruby
-        .
-         0    1   2    3      4     5
-        [39, 42, 51, 9001, 9042] // Removing 51.. it happens to be at index 2
-        [39, 42, 9001, 9042] // 9001.. happens to be at index 2
-        [39, 42, 9042] // 9042.. happens to be at index 2
-        [39, 42] // We're done because we chopped up the whole list
+
+    #!ruby
+    .
+     0    1   2    3      4     5
+    [39, 42, 51, 9001, 9042] // Removing 51.. it happens to be at index 2
+    [39, 42, 9001, 9042] // 9001.. happens to be at index 2
+    [39, 42, 9042] // 9042.. happens to be at index 2
+    [39, 42] // We're done because we chopped up the whole list
 
 So we'll always be removing the element at index 2.. or min
 
-        #!java
-        public static void filterRange(ArrayList<Integer> list, int min, int max) {
-          for(int i = min; i <= max; i++) {
-            if(i < list.size())
-              list.remove(min);
-            else
-              return;
-          }
-        }
+    #!java
+    public static void filterRange(ArrayList<Integer> list, int min, int max) {
+      for(int i = min; i <= max; i++) {
+        if(i < list.size())
+          list.remove(min);
+        else
+          return;
+      }
+    }
 
 Then you try out the numbers on paper with your example. This would
 make.
-        #!java
-        for(int i = 2; i < 5; i++) {
-          if(i < 5)
-            list.remove(2)
-          else
-            return;
-        }
+    #!java
+    for(int i = 2; i < 5; i++) {
+      if(i < 5)
+        list.remove(2)
+      else
+        return;
+    }
 
 ## Stacks and Queues
 
@@ -138,20 +138,21 @@ groceries, it'd be douche to return them a busted car.
 
 Let's try this example
 
-        Before       After
-        //39  //     //    //
-        //9001// ==> //    //
-        //42  //     //9001//
-        //39  //     //42  //
-        =======       =====
+    Before       After
+    //39  //     //    //
+    //9001// ==> //    //
+    //42  //     //9001//
+    //39  //     //42  //
+    =======       =====
 
 The initial state:
 
-        //39  //
-        //9001// ________________
-        //42  //
-        //39  // ________________
-         ====
+    //39  //
+    //9001// ________________
+    //42  //
+    //39  // ________________
+     ====
+
 One thing that you need to notice is that we need to know the smallest
 number in the stack in order to remove it. **With stacks, it is
 impossible to find out what the last item is without removing everything
@@ -162,44 +163,44 @@ We'll also want to find the smallest number in the stack as we remove
 everything.
 
 
-          stack to queue
-          also find smallest number(39)
-        //  //
-        //  // ________________
-        //  // 39, 42, 9001, 39
-        //  // ________________
-         ====
+      stack to queue
+      also find smallest number(39)
+    //  //
+    //  // ________________
+    //  // 39, 42, 9001, 39
+    //  // ________________
+     ====
 
 Then we'll put the elements back.. all except for the smallest number
 
-          queue to stack
-          except for the elements equal to the smallest number
-        //    //
-        //    // ________________
-        //42  //
-        //9001// ________________
-         =====
+      queue to stack
+      except for the elements equal to the smallest number
+    //    //
+    //    // ________________
+    //42  //
+    //9001// ________________
+     =====
 
 So we're done right!? **No. Everything is in the wrong order. You would
 notice this if you used the diagrams like you should**. We can put it to
 the way that it should look if we move everything to a queue again and
 then back to the stack
 
-            stack to queue
-        //    //
-        //    // ________________
-        //    // 9001, 42
-        //    // ________________
-         =====
+        stack to queue
+    //    //
+    //    // ________________
+    //    // 9001, 42
+    //    // ________________
+     =====
 
 And back to the stack
 
-            queue to stack
-        //    //
-        //    // ________________
-        //9001//
-        //42  // ________________
-         =====
+        queue to stack
+    //    //
+    //    // ________________
+    //9001//
+    //42  // ________________
+     =====
 
 And the stack looks just like how we wanted it.
 
@@ -213,36 +214,36 @@ Now that we have all of the steps, write them out
 And code these out! Stuff like edge cases figure out on the spot as you
 code.
 
-        #!java
-        public static int removeMin(Stack<Integer> derp) {
-          if(derp.isEmpty())
-            return;
-          Queue<Integer> meep = new LinkedList<Integer>();
-          // Need to retrieve the first element
-          // in order to find the minimum
-          int min = derp.pop();
-          meep.add(min);
+    #!java
+    public static int removeMin(Stack<Integer> derp) {
+      if(derp.isEmpty())
+        return;
+      Queue<Integer> meep = new LinkedList<Integer>();
+      // Need to retrieve the first element
+      // in order to find the minimum
+      int min = derp.pop();
+      meep.add(min);
 
-          while(!derp.isEmpty()){
-            int value = derp.pop();
-            if(value < min)
-              min = value;
-            meep.add(value);
-          }
+      while(!derp.isEmpty()){
+        int value = derp.pop();
+        if(value < min)
+          min = value;
+        meep.add(value);
+      }
 
-          while(!meep.isEmpty())
-            int value = meep.remove();
-            if(value != min)
-              derp.add(value);
+      while(!meep.isEmpty())
+        int value = meep.remove();
+        if(value != min)
+          derp.add(value);
 
-          while(!derp.isEmpty())
-            meep.add(derp.pop());
+      while(!derp.isEmpty())
+        meep.add(derp.pop());
 
-          while(!meep.isEmpty())
-            derp.add(meep.remove());
+      while(!meep.isEmpty())
+        derp.add(meep.remove());
 
-          return min;
-        }
+      return min;
+    }
 
 You can also make use of the given s2q and q2s methods.
 
@@ -253,27 +254,27 @@ Maps store the most recent value stored for any particular key
 
 Loop through Sets using for each Loops or Iterators
 
-        #!java
-        // Imagine that you already have a Set<String> called set
-        for(String item: set) {
-          // Use item however you want
-        }
+    #!java
+    // Imagine that you already have a Set<String> called set
+    for(String item: set) {
+      // Use item however you want
+    }
 
-        Iterator<String> it = set.iterator();
-        while(it.hasNext()) {
-          String item = it.next();
-          // Use item however you want
-          it.remove(); // You can also remove item from the set
-        }
+    Iterator<String> it = set.iterator();
+    while(it.hasNext()) {
+      String item = it.next();
+      // Use item however you want
+      it.remove(); // You can also remove item from the set
+    }
 
 Loop through key/value pairs in maps through keyset
 
-        #!java
-        // Imagine that you already have a Map<String, Integer> called map
-        for(String key: map.keySet()) {
-          Integer value = map.get(key);
-          // Use key or value however you want
-        }
+    #!java
+    // Imagine that you already have a Map<String, Integer> called map
+    for(String key: map.keySet()) {
+      Integer value = map.get(key);
+      // Use key or value however you want
+    }
 
 ## whoPassed
 
@@ -286,19 +287,19 @@ Loop through key/value pairs in maps through keyset
 
 As always, try an example
 
-        #!ruby
-        .
-        {
-           "Garpley" => 100,
-           "Alice"   => 42,
-           "Bob"     => 39
-        }
-        {
-           100 => 4.0,
-           42  => 3.9,
-           39  => 2.1
-        }
-        minGrade = 3.9
+    #!ruby
+    {
+       "Garpley" -> 100,
+       "Alice"   -> 42,
+       "Bob"     -> 39
+    }
+    {
+       100 -> 4.0,
+       42  -> 3.9,
+       39  -> 2.1
+    }
+
+    minGrade -> 3.9
 
 How would you handle this as a human?
 
@@ -311,20 +312,20 @@ looped through their grades too.
 
 return {Garpley, Alice}
 
-        #!java
-        public static void whoPassed(Map<String, Integer> students, Map<Integer, Double> grades, double minGrade) {
-          Set<String> passers = new TreeSet<String>();
+    #!java
+    public static void whoPassed(Map<String, Integer> students, Map<Integer, Double> grades, double minGrade) {
+      Set<String> passers = new TreeSet<String>();
 
-          for(String name: students.keySet()) {
-            int percentGrade = students.get(name);
-            double numGrade  = grades.get(percentGrade);
+      for(String name: students.keySet()) {
+        int percentGrade = students.get(name);
+        double numGrade  = grades.get(percentGrade);
 
-            if(numGrade > minGrade)
-              passers.add(name);
-          }
+        if(numGrade > minGrade)
+          passers.add(name);
+      }
 
-          return name;
-        }
+      return name;
+    }
 
 
 ## Linked Lists
@@ -334,22 +335,22 @@ return {Garpley, Alice}
 Say we had some nodes and wanted to rearrange them or run some operation
 on them
 
-        .p..-->[39]-->[42]-->[9001]-->...
-        .p..-->[39]-->[9001]-->[42]-->...
+    .p..-->[39]-->[42]-->[9001]-->...
+    .p..-->[39]-->[9001]-->[42]-->...
 
 Note that I don't care if this chunk of nodes appears at the beginning,
 middle, or end of the list. That's why I used the ...
 
 Write a beginning, middle, and after picture:
 
-        ...-->[39]-->[42]-->[9001]-->...
-        .
-                        _____________
-                       / ,-------.   -,
-        ...-->[39]   [42]   [9001]     ...
-               \_____________.^
+    ...-->[39]-->[42]-->[9001]-->...
+    .
+                    _____________
+                   / ,-------.   -,
+    ...-->[39]   [42]   [9001]     ...
+           \_____________.^
 
-        ...-->[39]-->[9001]-->[42]-->...
+    ...-->[39]-->[9001]-->[42]-->...
 
 
 The middle diagram visually has the nodes from before. But the arrows
@@ -357,11 +358,13 @@ are pointing teh same way as the after picture. This will help us know
 what needs to change.
 
 Assign some temporary variables:
-                        _____________
-                       / ,-------.   -,
-        ...-->[39]   [42]   [9001]     ...
-                \_____________.^
-         p      a      b       c        d
+
+    .
+                    _____________
+                   / ,-------.   -,
+    ...-->[39]   [42]   [9001]     ...
+            \_____________.^
+     p      a      b       c        d
 
 And follow the lines to see what order things need to change
 
@@ -401,15 +404,15 @@ nodes at a time, because we can compare their parity.
 
 This means that the perspective is two nodes
 
-        ->[39]->[42]->
-            a     b
+    ->[39]->[42]->
+        a     b
 
 The operation that we will run is to compare if these are of the
 differing parity.
 
-        #!java
-        if(a % 2 == b % 2)
-          return false;
+    #!java
+    if(a % 2 == b % 2)
+      return false;
 
 #### Choose the preconditions
 
@@ -419,9 +422,9 @@ What are some preconditions for this code to work?
   point here. I'm thinking some sort of current that we will use in a
 loop.
 
-        ->[39]->[42]->
-           /\
-          current
+    ->[39]->[42]->
+       /\
+      current
 
 - We need at least two nodes. You can't compare two if there aren't two.
 
@@ -431,54 +434,54 @@ There will always be two cases. The front case and anything else. Lets
 set up the perspective for the first case by satisfying our two
 preconditions
 
-        #!java
-        // Yes.. I haven't set up a new button for the pipe symbol,
-        // so this is the best I can do for the or operator!
+    #!java
+    // Yes.. I haven't set up a new button for the pipe symbol,
+    // so this is the best I can do for the or operator!
 
-        // Satisfy the second precondition
-        if(front != null)
-          return true;
-        if(front.next != null)
-          return true;
+    // Satisfy the second precondition
+    if(front != null)
+      return true;
+    if(front.next != null)
+      return true;
 
-        // Satisfy the first precondition
-        ListNode current = front;
+    // Satisfy the first precondition
+    ListNode current = front;
 
 This stuff goes at the top of your method.
 
 Next we can satisfy the preconditions for transitioning between
 perspectives
 
-        //Satisfy the second precondition
-        while(current.next != null) {
-          // The code for our operation
+    //Satisfy the second precondition
+    while(current.next != null) {
+      // The code for our operation
 
-          //Satisfy the first precondition
-          current = current.next;
-        }
+      //Satisfy the first precondition
+      current = current.next;
+    }
 
 Combine everything
 
-        #!java
-        public boolean hasAlternatingParity() {
-          if(front != null)
-            return true;
-          if(front.next != null)
-            return true;
+    #!java
+    public boolean hasAlternatingParity() {
+      if(front != null)
+        return true;
+      if(front.next != null)
+        return true;
 
-          ListNode current = front;
+      ListNode current = front;
 
-          while(current.next != null) {
-            ListNode a = current;
-            ListNode b = current.next;
+      while(current.next != null) {
+        ListNode a = current;
+        ListNode b = current.next;
 
-            if(a % 2 == b % 2)
-              return false;
+        if(a % 2 == b % 2)
+          return false;
 
-            current = current.next;
-          }
-          return true;
-        }
+        current = current.next;
+      }
+      return true;
+    }
 
 Victory.
 
@@ -498,39 +501,38 @@ Victory.
 
 Try some example inputs and outputs
 
-        indexOf "apple",  "app" => 0
-        indexOf "papple", "app" => 1
+    indexOf "apple",  "app" => 0
+    indexOf "papple", "app" => 1
 
 Decide when we can quit and how we respond in these base cases
 
-          if(original.length < piece.length)
-            return -1;
-          if(original.substring(0, piece.length).equals(piece))
-            return 0;
+      if(original.length < piece.length)
+        return -1;
+      if(original.substring(0, piece.length).equals(piece))
+        return 0;
 
 Otherwise, how do we chop up the problem? See an answer cause I'm tired
 of typing by now hole crap I'm still here writing this I am totally not
 proofreading.
 
+    #!java
+    public static int indexOf(String original, String piece) {
+      // Base Cases -- really easy to solve situations
+      if(original.length < piece.length)
+        return -1;
+      if(original.substring(0, piece.length).equals(piece))
+        return 0;
 
-        #!java
-        public static int indexOf(String original, String piece) {
-          // Base Cases -- really easy to solve situations
-          if(original.length < piece.length)
-            return -1;
-          if(original.substring(0, piece.length).equals(piece))
-            return 0;
+      int result = indexOf(original.substring(1), piece);
+      // We assume that the indexOf call returns the correct value..
+      // But the correct value might have more than one situation.
+      // Based on that return, we put together the pieces differently
 
-          int result = indexOf(original.substring(1), piece);
-          // We assume that the indexOf call returns the correct value..
-          // But the correct value might have more than one situation.
-          // Based on that return, we put together the pieces differently
-
-          if(result == -1)
-            // If it wasn't found.. it's still -1
-            return -1;
-          else
-            // If it was found, then there actually is one more
-            // letter to account for
-            return result + 1;
-        }
+      if(result == -1)
+        // If it wasn't found.. it's still -1
+        return -1;
+      else
+        // If it was found, then there actually is one more
+        // letter to account for
+        return result + 1;
+    }
