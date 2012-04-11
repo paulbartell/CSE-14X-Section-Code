@@ -24,11 +24,12 @@ https://github.com/DavidMah/CSE-143-Section-AE-Code/blob/master/3%20-%20LinkedIn
 The Linked List is another data structure. In short, the power it offers
 is **the ability to easily change size**.
 
-    #!java
+```java
     public class ListNode {
       public int data;
       public ListNode next;
     }
+```
 
 This is the basic construct of a Linked List. One Linked List is a chain
 of many List Nodes. Every List Node contains **one piece of data** and an
@@ -50,23 +51,26 @@ hiding in your cellphones, you just have all of their phone numbers.
 With **Primitives** like int, double, char, a variable stored will
 actually have this value in it
 
-    #!java
+```java
     int a = 5;
+```
 
 If you pass that variable into a parameter, it will make a copy of it
 for you
 
-    #!java
+```java
     public static void addALittleBit(int a) {
       a = 9001;
     }
+```
 
 If in any other method I ran this code below..
 
-    #!java
+```java
     int a = 5;
     addALittleBit(a);
     System.out.println(a);
+```
 
 Would it print 9001? **No**.
 
