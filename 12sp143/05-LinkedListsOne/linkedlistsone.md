@@ -39,9 +39,9 @@ of many List Nodes. Every List Node contains **one piece of data** and an
 
 ![Alt text](http://davidpmah.com/cse/14311fa/linkedlists/3.png)
 
-Problems in CSE143 will involve manipulating these pointers
+Problems in CSE143 will involve manipulating these references
 
-## Pointers
+## References
 
 This is about References in programming -- which is really
 important for handling Linked Lists. If you went to Stuart's Lecture,
@@ -133,20 +133,20 @@ Heres one more related feature.
 ```
 
 It'll say false. **Even though all of the fields in a and b are
-identical, when we say a == b, we are asking if the pointers point to
+identical, when we say a == b, we are asking if the references point to
 the same spot on your computer. They don't**.
 
 ### null
 
-Null is a pointer to nowhere. It can act as a placeholder if you have an
+Null is a reference to nowhere. It can act as a placeholder if you have an
 Object variable but don't want to have it point to a real object. You
-can't truly understand null if you don't understand pointers.
+can't truly understand null if you don't understand references.
 
 ```java
     ListNode a = null;
 ```
 
-It can act as a placeholder for a pointer for any object(**not primitives**)
+It can act as a placeholder for a reference for any object(**not primitives**)
 Sometimes a problem will ask you to return null in some cases. You can
 just write:
 
@@ -164,7 +164,7 @@ ListNode methods if the variable is null**
     ListNode node = new ListNode(5);
     System.out.println(node.data); // this works
     node = null;
-    System.out.println(node.data); // NullPointerException
+    System.out.println(node.data); // NullreferenceException
 ```
 
 So null is dangerous. We'll just have to ensure that it isn't null
@@ -223,13 +223,13 @@ After:
 * 3     => 1
 
 The usual problem about LinkedLists are that if you write code that
-changes pointers, then you may end up with a node that has **nothing
+changes references, then you may end up with a node that has **nothing
 pointing to it**. In this case, that node... **lost forever, and you got
 the problem wrong**. Do not lose your nodes forever. They will fly away
 if you give them the chance. 
 
-Here is the easy way -- You should make temporary pointers to nodes
-whenever you can. Making more pointers never hurt anybody. They're just
+Here is the easy way -- You should make temporary references to nodes
+whenever you can. Making more references never hurt anybody. They're just
 more strings to hold onto your balloons with.
 
 ```java
@@ -242,7 +242,7 @@ more strings to hold onto your balloons with.
 Then we must rearrange their nexts
 
 ```java
-    front       = b;      // remember list isn't a Node. It itself is a pointer/arrow
+    front       = b;      // remember list isn't a Node. It itself is a reference/arrow
     first.next  = fourth; // 1 => null
     second.next = c;      // 2 => 3 (We actually don't need this line because 2 already points to 3)
     third.next  = a;      // 3 => 1
@@ -254,7 +254,7 @@ statements in any order and still be fine.
 ```java
     third.next = a;      // 3 => 1
     first.next = fourth; // 1 => null
-    front      = b;      // remember list isn't a Node. It itself is a pointer/arrow
+    front      = b;      // remember list isn't a Node. It itself is a reference/arrow
     second.next = c;     // 2 => 3 (We actually don't need this line because 2 already points to 3)
 ```
 
@@ -273,13 +273,13 @@ and we called `list.add(50, 2)`, then it should look like this
 
 ![Alt text](http://davidpmah.com/cse/14311fa/linkedlists/9.png)
 
-We must rearrange the pointers of the ListNodes to handle this problem.
+We must rearrange the references of the ListNodes to handle this problem.
 **You cannot take the 2'th node and set the .data = 50**. This is called
 mutation, and it takes tons longer for your computer to deal with it
-than it does for rearranging pointers. Recall that **data structures
+than it does for rearranging references. Recall that **data structures
 are meant to organize information**. That is -- what if each ListNode's
 data contained the entire contents of a book? This would take crazy long
-to mutate when we could just change some of the pointers.
+to mutate when we could just change some of the references.
 
 We can separate this problem into two parts:
 
@@ -304,7 +304,7 @@ everything.
         return; // You can return in a void method.. It just stops.
       }
 
-      // Get our pointers to where we want them to be
+      // Get our references to where we want them to be
       int currentIndex = 1;
       ListNode current = front;
       while(currentIndex < index) {
@@ -312,7 +312,7 @@ everything.
         current = current.next;
       }
 
-      // Rearrange our pointers that we now have set up
+      // Rearrange our references that we now have set up
       ListNode firstNode = current;
       ListNode farNode   = firstNode.next;
       ListNode newNode   = new ListNode(element);
@@ -325,7 +325,7 @@ everything.
 #### Moving into position
 
 This is the part that is new as compared to the first section on Linked
-Lists. We create a pointer **current** to point to the front node. And
+Lists. We create a reference **current** to point to the front node. And
 we move it **one spot prior** to where we are trying to insert the new
 node.
 
@@ -347,7 +347,7 @@ We will have to use a LinkedList traversal to set this up.
     }
 ```
 
-This is a common pattern. We have a pointer: current. And **we move
+This is a common pattern. We have a reference: current. And **we move
 current down the list one node at a time until it gets to where we need
 it to**. For another pattern with a while loop on traversing lists, see
 the solution to size.
@@ -380,14 +380,14 @@ First go ahead and set up your temporary variables. One for every node
 in the perspective of the problem.
 
 ```java
-    // Rearrange our pointers that we now have set up
+    // Rearrange our references that we now have set up
     ListNode firstNode = current;
     ListNode farNode   = firstNode.next;
 ```
 
 I even made a temporary variable to to replace what current is. In
 future problems, current may have to be changing as we are reassigning
-pointers. This way I can be sure about what nodes my pointers are
+references. This way I can be sure about what nodes my references are
 pointing to.
 
 Now we can start applying each of those three changes:
@@ -397,9 +397,9 @@ Now we can start applying each of those three changes:
 ```
 
 New Node created -- I like making any new nodes before changing
-pointers, because it is easier to organize.
+references, because it is easier to organize.
 
-Then change the pointers -- the other two changes to the LinkedList that
+Then change the references -- the other two changes to the LinkedList that
 needed to be applied. That's all 3 things done, so this solves the
 problem!
 
