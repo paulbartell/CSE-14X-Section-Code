@@ -72,25 +72,26 @@ Would it print 9001? **No**.
 
 But this is slightly different with objects
 
-    #!java
+```java
     ListNode a = new ListNode();
-
+```
 Consider this method that takes a ListNode
 
-    #!java
+```java
     public static void setNextToNull(ListNode node) {
       node.next = null;
     }
+```
 
 If I run
 
-    #!java
+```java
     ListNode a = new ListNode();
     ListNode b = new ListNode();
     a.next     = b;
     setNextToNull(a);
     System.out.println(a.next);
-
+```
 Then it will report null(will explain what null is in a sec...)
 
 Why does this happen? I want you to think that **a variable that says it
@@ -100,10 +101,11 @@ arrows**.  **arrows**. **ARROWS**
 
 But seriously. Now consider this method
 
-    #!java
+```java
     public static void setToNull(ListNode node) {
       node = null;
     }
+```
 
 If I run `setToNull(a);`, then it **will not change a at all**. This
 part is just like usual with variables. When you make that function
@@ -120,10 +122,11 @@ both pointed to**. Read that bold part again.
 
 Heres one more related feature.
 
-    #!java
+```java
     ListNode a = new ListNode();
     ListNode b = new ListNode();
     System.out.println(a == b);
+```
 
 It'll say false. **Even though all of the fields in a and b are
 identical, when we say a == b, we are asking if the pointers point to
@@ -135,15 +138,17 @@ Null is a pointer to nowhere. It can act as a placeholder if you have an
 Object variable but don't want to have it point to a real object. You
 can't truly understand null if you don't understand pointers.
 
-    #!java
+```java
     ListNode a = null;
+```
 
 It can act as a placeholder for a pointer for any object(**not primitives**)
 Sometimes a problem will ask you to return null in some cases. You can
 just write:
 
-    #!java
+```java
     return null;
+```
 
 In LinkedLists, we use it as a wall at the end of the list.
 
@@ -151,19 +156,21 @@ A problem we will encounter with null is that even though a ListNode
 variable can be null, **You cannot try to access ListNode fields or use
 ListNode methods if the variable is null**
 
-    #!java
+```java
     ListNode node = new ListNode(5);
     System.out.println(node.data); // this works
     node = null;
     System.out.println(node.data); // NullPointerException
+```
 
 So null is dangerous. We'll just have to ensure that it isn't null
 before we try accessing any fields
 
-    #!java
+```java
     if(node != null) {
       System.out.println(node.data);
     }
+```
 
 This is safe. Future problems will be frustrating because we may have to
 access node.next.next but node.next might be null.
@@ -221,28 +228,31 @@ Here is the easy way -- You should make temporary pointers to nodes
 whenever you can. Making more pointers never hurt anybody. They're just
 more strings to hold onto your balloons with.
 
-    #!java
+```java
     ListNode first  = list;                // 1
     ListNode second = list.next;           // 2
     ListNode third  = list.next.next;      // 3
     ListNode fourth = list.next.next.next; // Whatever 3 points to
+```
 
 Then we must rearrange their nexts
 
-    #!java
+```java
     front       = b;      // remember list isn't a Node. It itself is a pointer/arrow
     first.next  = fourth; // 1 => null
     second.next = c;      // 2 => 3 (We actually don't need this line because 2 already points to 3)
     third.next  = a;      // 3 => 1
+```
 
 What is good about these temporary variables is that we can write these
 statements in any order and still be fine.
 
-    #!java
+```java
     third.next = a;      // 3 => 1
     first.next = fourth; // 1 => null
     front      = b;      // remember list isn't a Node. It itself is a pointer/arrow
     second.next = c;     // 2 => 3 (We actually don't need this line because 2 already points to 3)
+```
 
 ### A Coding Problem
 
@@ -280,7 +290,7 @@ Remember, we are writing a method for the LinkedIntList class. Since we
 are writing code in the class, we have access to its fields and
 everything.
 
-    #!java
+```java
     public void add(int index, int element) {
       // Handle the case where we are inserting at zero
       if(index == 0) {
@@ -306,6 +316,7 @@ everything.
       firstNode.next   = newNode;
       newNode.next     = farNode;
     }
+```
 
 #### Moving into position
 
@@ -323,13 +334,14 @@ Consider that example with [39, 42, 9001]. If we are trying to call
 
 We will have to use a LinkedList traversal to set this up.
 
-    #!java
+```java
     ListNode current = front;
     int currentIndex = 1;
     while(currentIndex < index) {
       currentIndex += 1;
       current = current.next;
     }
+```
 
 This is a common pattern. We have a pointer: current. And **we move
 current down the list one node at a time until it gets to where we need
@@ -363,10 +375,11 @@ You need to label all that has changed
 First go ahead and set up your temporary variables. One for every node
 in the perspective of the problem.
 
-    #!java
+```java
     // Rearrange our pointers that we now have set up
     ListNode firstNode = current;
     ListNode farNode   = firstNode.next;
+```
 
 I even made a temporary variable to to replace what current is. In
 future problems, current may have to be changing as we are reassigning
@@ -375,8 +388,9 @@ pointing to.
 
 Now we can start applying each of those three changes:
 
-    #!java
+```java
     ListNode newNode   = new ListNode(element);
+```
 
 New Node created -- I like making any new nodes before changing
 pointers, because it is easier to organize.
@@ -385,15 +399,19 @@ Then change the pointers -- the other two changes to the LinkedList that
 needed to be applied. That's all 3 things done, so this solves the
 problem!
 
-    #!java
+```java
     firstNode.next   = newNode;
     newNode.next     = farNode;
+```
 
 **Because we have temporary variables, nobody cares about the order that you 
 change the .nexts.**
 
+
+```java
     newNode.next     = farNode;
     firstNode.next   = newNode;
+```
 
 ### Edge Cases
 
@@ -407,13 +425,14 @@ Here's a few.
 Sometimes the idea that null is behind the new block is a little
 confusing. We should walk through our code as if farNode is null
 
-    #!java
+```java
     ListNode firstNode = current;
     ListNode farNode   = firstNode.next; // This will be null
     ListNode newNode   = new ListNode(element);
 
     firstNode.next   = newNode;
     newNode.next     = farNode; //newNode.next will point to null
+```
 
 So it's fine. Because we want newNode to point to null.
 
@@ -422,21 +441,23 @@ So it's fine. Because we want newNode to point to null.
 front is just a variable. It's different from some sort of node.next. So
 we should pay attention to it.
 
-    #!java
+```java
     ListNode firstNode = current;
+```
 
 With this, we already know that we're screwed. How can we be putting
 something in the beginning of the list, if our current code forces the
 newNode to be on the .next of a current node. **We should handle this
 edge case separately**.
 
-    #!java
+```java
     // Handle the case where we are inserting at zero
     if(index == 0) {
       ListNode newNode = new ListNode(element);
       newNode.next     = front;
       front            = newNode;
     }
+```
 
 * What if we are trying to add to the front of an empty list
 
@@ -451,4 +472,3 @@ Common edge cases for problems to worry about:
 * Applying some function to the empty LinkedList
 * Applying some function to the LinkedList of size 1
 </markdown>
-
